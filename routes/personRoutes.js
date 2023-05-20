@@ -5,6 +5,7 @@ const {
 	updatePerson,
 	deletePerson,
 	createPerson,
+	getSingle,
 } = require("../controllers/personControllers");
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router
 	.get(getSinglePerson)
 	.put(updatePerson)
 	.delete(deletePerson);
+router.route("/:board/:year/:roll").get(getSingle);
 
 module.exports = router;

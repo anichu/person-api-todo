@@ -74,3 +74,20 @@ exports.getAllPersons = async (req, res) => {
 		res.status(500).send(error.message);
 	}
 };
+
+exports.getSingle = async (req, res) => {
+	const { board, year, roll } = req.params;
+	try {
+		const person = await Person.findOne({
+			board: board,
+			year: year,
+			roll: roll,
+		});
+		if (!person) {
+			return res.status(404).json({ message: "Person not found" });
+		}
+		res.json(person);
+	} catch (error) {
+		res.status(500).send(error.message);
+	}
+};
